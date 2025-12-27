@@ -46,6 +46,28 @@ pipeline {
             steps {
                 echo '---'
                 echo 'Stage: Docker build'
+                script {
+                    sh '''
+                        echo "Building Docker image with embedded HTTP server..."
+                        
+                        # Create Dockerfile with simple HTTP server
+                        cat > Dockerfile.deploy << 'EOF'
+FROM openjdk:11-jre-slim
+WORKDIR /app
+COPY SimpleServer.class /app/
+EXPOSE 8888
+CMD ["java", "SimpleServer"]
+EOF
+                        
+                        # Compile Java server
+                        javac SimpleServer.java
+                        
+                        # Build Docker image
+                        docker build -f Dockerfile.deploy -t smart-campus-app:${GIT_TAG_TO_DEPLOY} .
+                        
+                        echo "Docker image built: smart-campus-app:${GIT_TAG_TO_DEPLOY}"
+                    '''
+                }
                 echo 'Status: SUCCESS'
             }
         }
@@ -64,26 +86,27 @@ pipeline {
                 echo 'Stage: Deploy application'
                 script {
                     sh '''
-                        echo "=== Killing old servers ==="
-                        pkill -f 'SimpleServer' || true
-                        sleep 2
+                        echo "Stopping old container..."
+                        docker stop smart-campus-app || true
+                        docker rm smart-campus-app || true
                         
-                        echo "=== Compiling server ==="
-                        javac SimpleServer.java
+                        echo "Starting application container on port 8888..."
+                        docker run -d \
+                            --name smart-campus-app \
+                            -p 8888:8888 \
+                            --restart unless-stopped \
+                            smart-campus-app:${GIT_TAG_TO_DEPLOY}
                         
-                        echo "=== Starting server on 0.0.0.0:8888 ==="
-                        nohup java SimpleServer > /tmp/server.log 2>&1 &
-                        
-                        echo "=== Waiting for server to start ==="
+                        echo "Waiting for application to start..."
                         sleep 5
                         
-                        echo "=== Checking server logs ==="
-                        cat /tmp/server.log
+                        echo "Checking container status..."
+                        docker ps | grep smart-campus-app
                         
-                        echo "=== Testing server connection ==="
+                        echo "Testing application..."
                         curl -f http://localhost:8888 || echo "Warning: localhost test failed"
                         
-                        echo "=== Deployment complete ==="
+                        echo "Deployment complete!"
                         echo "Deployed version: ${GIT_TAG_TO_DEPLOY}"
                         echo "Application is running on http://54.237.222.37:8888"
                     '''
