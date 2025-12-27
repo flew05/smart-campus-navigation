@@ -37,7 +37,7 @@ curl http://localhost:8888/actuator/health
 
 - Port: 8888
 - Database: H2 (in-memory)
-- Nexus: http://52.202.161.235:8081
-- SonarQube: http://52.202.161.235:9000
-- Deployed app: http://52.202.161.235:8888
+- Nexus: http://54.237.222.37:8081
+- SonarQube: http://54.237.222.37:9000
+- Deployed app: http://54.237.222.37:8888
 

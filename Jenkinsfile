@@ -8,19 +8,19 @@ pipeline {
     
     environment {
         // Nexus Configuration
-        NEXUS_URL = 'http://52.202.161.235:8081'
+        NEXUS_URL = 'http://54.237.222.37:8081'
         NEXUS_REPOSITORY = 'maven-releases'
         NEXUS_SNAPSHOT_REPOSITORY = 'maven-snapshots'
         NEXUS_USER = 'developer'
         NEXUS_PASSWORD = 'rwPTHw'
         
         // SonarQube Configuration
-        SONAR_URL = 'http://52.202.161.235:9000'
+        SONAR_URL = 'http://54.237.222.37:9000'
         SONAR_USER = 'developer'
         SONAR_PASSWORD = 'rwPTHw'
         
         // Application Configuration
-        APP_URL = 'http://52.202.161.235:8888'
+        APP_URL = 'http://54.237.222.37:8888'
         APP_PORT = '8888'
         
         // Project Variables
