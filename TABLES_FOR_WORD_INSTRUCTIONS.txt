@@ -1,0 +1,295 @@
+═══════════════════════════════════════════════════════════════════════════════
+ИНСТРУКЦИИ ПО СОЗДАНИЮ ТАБЛИЦ В WORD
+═══════════════════════════════════════════════════════════════════════════════
+
+⚠️ ВАЖНО: НЕ копируй ASCII таблицы из текстовых файлов (+---+)!
+Создавай НОРМАЛЬНЫЕ Word таблицы через Insert → Table!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ТАБЛИЦА 1: STAKEHOLDER ANALYSIS (Task 1, раздел 1.2)
+═══════════════════════════════════════════════════════════════════════════════
+
+КАК СОЗДАТЬ В WORD:
+───────────────────
+1. Поставь курсор после заголовка "1.2 STAKEHOLDER ANALYSIS"
+2. Insert → Table → 4 столбца × 5 строк
+3. Заполни данные ниже
+4. Форматирование:
+   - Первая строка (заголовки): жирный шрифт, заливка светло-серая
+   - Границы: все границы видимы
+   - Выравнивание: заголовки по центру, текст по левому краю
+
+
+ДАННЫЕ ДЛЯ ТАБЛИЦЫ:
+───────────────────
+
+Заголовки (строка 1):
+┌──────────────────┬─────────────────────┬──────────────────────────┬──────────────────────────┐
+│ Stakeholder      │ Role                │ Goals                    │ Expectations             │
+└──────────────────┴─────────────────────┴──────────────────────────┴──────────────────────────┘
+
+Строка 2 - Students:
+┌──────────────────┬─────────────────────┬──────────────────────────┬──────────────────────────┐
+│ Students         │ Primary end-users   │ • Find classrooms        │ • Navigation within      │
+│                  │                     │   quickly                │   2 minutes              │
+│                  │                     │ • Arrive on time         │ • Schedule integration   │
+│                  │                     │ • Find study spaces      │ • Real-time room         │
+│                  │                     │                          │   availability           │
+└──────────────────┴─────────────────────┴──────────────────────────┴──────────────────────────┘
+
+Строка 3 - Visitors:
+┌──────────────────┬─────────────────────┬──────────────────────────┬──────────────────────────┐
+│ Visitors         │ Prospective         │ • Navigate unfamiliar    │ • No login required      │
+│                  │ students, parents,  │   campus                 │   (guest mode)           │
+│                  │ guests              │ • Find buildings/offices │ • Simple, clear          │
+│                  │                     │                          │   directions             │
+└──────────────────┴─────────────────────┴──────────────────────────┴──────────────────────────┘
+
+Строка 4 - Faculty/Staff:
+┌──────────────────┬─────────────────────┬──────────────────────────┬──────────────────────────┐
+│ Faculty/Staff    │ Instructors and     │ • Update room            │ • Easy notification      │
+│                  │ admin staff         │   assignments            │   capability             │
+│                  │                     │ • Notify students of     │ • Reliable schedule sync │
+│                  │                     │   changes                │                          │
+└──────────────────┴─────────────────────┴──────────────────────────┴──────────────────────────┘
+
+Строка 5 - Campus Administration:
+┌──────────────────┬─────────────────────┬──────────────────────────┬──────────────────────────┐
+│ Campus Admin     │ IT and facilities   │ • Reduce complaints      │ • 99.5%+ uptime          │
+│                  │ management          │ • Optimize space usage   │ • Usage analytics        │
+│                  │                     │ • Ensure accessibility   │ • ADA/WCAG compliance    │
+└──────────────────┴─────────────────────┴──────────────────────────┴──────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ТАБЛИЦА 2: SYSTEM REQUIREMENTS (Task 2, разделы 2.1 & 2.2)
+═══════════════════════════════════════════════════════════════════════════════
+
+КАК СОЗДАТЬ В WORD:
+───────────────────
+1. Поставь курсор после заголовка "2.1 & 2.2 FUNCTIONAL AND NON-FUNCTIONAL REQUIREMENTS"
+2. Напиши: "Table 1: System Requirements"
+3. Insert → Table → 5 столбцов × 21 строка (20 requirements + 1 заголовок)
+4. Форматирование:
+   - Первая строка (заголовки): жирный шрифт, заливка светло-серая
+   - Границы: все границы видимы
+   - Можно объединить ячейки для разделов "Functional Requirements" и "Non-Functional Requirements"
+
+
+СТРУКТУРА ТАБЛИЦЫ:
+──────────────────
+
+Заголовки:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ ID  │ Requirement Description              │ Type       │ Addresses    │ Priority │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+
+FUNCTIONAL REQUIREMENTS (строки 2-14):
+───────────────────────────────────────
+
+FR1:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ FR1 │ The system shall allow users to      │ Functional │ Problem 1    │ High     │
+│     │ search for campus locations by       │            │              │          │
+│     │ name, building code, or room number  │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR2:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ FR2 │ The system shall calculate optimal   │ Functional │ Problem 1    │ Critical │
+│     │ routes between two campus locations, │            │              │          │
+│     │ including outdoor paths and indoor   │            │              │          │
+│     │ corridors                            │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR3:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ FR3 │ The system shall integrate with      │ Functional │ Problem 2    │ Critical │
+│     │ university schedule system to        │            │              │          │
+│     │ automatically retrieve users' class  │            │              │          │
+│     │ schedules                            │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR4:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ FR4 │ The system shall provide turn-by-    │ Functional │ Problem 1, 3 │ High     │
+│     │ turn navigation with visual, text,   │            │              │          │
+│     │ and optional audio guidance          │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR5:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ FR5 │ The system shall display real-time   │ Functional │ Problem 2    │ High     │
+│     │ room availability for classrooms,    │            │              │          │
+│     │ study spaces, and labs               │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR6:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ FR6 │ The system shall send push           │ Functional │ Problem 2    │ Critical │
+│     │ notifications about schedule         │            │              │          │
+│     │ changes, room reassignments, events  │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR7:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ FR7 │ The system shall calculate           │ Functional │ Problem 3    │ Critical │
+│     │ accessible routes avoiding stairs,   │            │              │          │
+│     │ including elevator locations         │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR8:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ FR8 │ The system shall support voice       │ Functional │ Problem 3    │ High     │
+│     │ commands and screen reader           │            │              │          │
+│     │ compatibility                        │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR9:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ FR9 │ The system shall allow faculty/staff │ Functional │ Problem 2    │ Medium   │
+│     │ to update room information and send  │            │              │          │
+│     │ announcements                        │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR10:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│FR10 │ The system shall provide guest mode  │ Functional │ Problem 1    │ High     │
+│     │ for navigation without               │            │              │          │
+│     │ authentication (visitors)            │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR11:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│FR11 │ The system shall display user's      │ Functional │ Problem 1    │ Critical │
+│     │ current location on interactive map  │            │              │          │
+│     │ with zoom/pan                        │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR12:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│FR12 │ The system shall save frequently     │ Functional │ Problem 1    │ Low      │
+│     │ visited locations and recent         │            │              │          │
+│     │ searches                             │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+FR13:
+┌─────┬──────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│FR13 │ The system shall automatically       │ Functional │ Problem 1, 2 │ High     │
+│     │ suggest navigation to next class     │            │              │          │
+│     │ 15 minutes before scheduled start    │            │              │          │
+└─────┴──────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+
+NON-FUNCTIONAL REQUIREMENTS (строки 15-21):
+────────────────────────────────────────────
+
+NFR1:
+┌──────┬─────────────────────────────────────┬─────────────┬──────────────┬──────────┐
+│ NFR1 │ The system shall calculate routes   │ Performance │ Problem 1    │ Critical │
+│      │ within 3 seconds for 95% of         │             │              │          │
+│      │ requests                            │             │              │          │
+└──────┴─────────────────────────────────────┴─────────────┴──────────────┴──────────┘
+
+NFR2:
+┌──────┬─────────────────────────────────────┬──────────────┬──────────────┬──────────┐
+│ NFR2 │ The system shall maintain 99.5%     │ Availability │ Problem 1, 2 │ Critical │
+│      │ uptime during academic hours        │              │              │          │
+│      │ (7AM-10PM weekdays)                 │              │              │          │
+└──────┴─────────────────────────────────────┴──────────────┴──────────────┴──────────┘
+
+NFR3:
+┌──────┬─────────────────────────────────────┬────────────┬──────────────┬──────────┐
+│ NFR3 │ New users shall successfully        │ Usability  │ Problem 1    │ High     │
+│      │ navigate within 2 minutes of first  │            │              │          │
+│      │ use, without training               │            │              │          │
+└──────┴─────────────────────────────────────┴────────────┴──────────────┴──────────┘
+
+NFR4:
+┌──────┬─────────────────────────────────────┬───────────────┬──────────────┬──────────┐
+│ NFR4 │ The system shall comply with WCAG   │ Accessibility │ Problem 3    │ Critical │
+│      │ 2.1 Level AA standards              │               │              │          │
+└──────┴─────────────────────────────────────┴───────────────┴──────────────┴──────────┘
+
+NFR5:
+┌──────┬─────────────────────────────────────┬──────────┬───────────────┬──────────┐
+│ NFR5 │ The system shall encrypt user       │ Security │ Data Privacy  │ Critical │
+│      │ location/schedule data using TLS    │          │ Guest mode:   │          │
+│      │ 1.3 (transit), AES-256 (rest).      │          │ read-only     │          │
+│      │ Guest mode: read-only access to     │          │ public info   │          │
+│      │ public info only                    │          │               │          │
+└──────┴─────────────────────────────────────┴──────────┴───────────────┴──────────┘
+
+NFR6:
+┌──────┬─────────────────────────────────────┬─────────────┬──────────────┬──────────┐
+│ NFR6 │ The system shall maintain           │ Reliability │ Problem 1    │ High     │
+│      │ positioning accuracy within 5m      │             │              │          │
+│      │ outdoors (GPS), 3m indoors          │             │              │          │
+│      │ (beacons)                           │             │              │          │
+└──────┴─────────────────────────────────────┴─────────────┴──────────────┴──────────┘
+
+NFR7:
+┌──────┬─────────────────────────────────────┬─────────────┬───────────────┬──────────┐
+│ NFR7 │ The application shall consume ≤5%   │ Performance │ User          │ Medium   │
+│      │ device battery per hour of active   │             │ Experience    │          │
+│      │ navigation                          │             │               │          │
+└──────┴─────────────────────────────────────┴─────────────┴───────────────┴──────────┘
+
+
+ПОСЛЕ ТАБЛИЦЫ добавь текст:
+────────────────────────────
+
+Rationale: All requirements are traceable to identified stakeholder problems. 
+Functional requirements (FR1-FR13) address core navigation, information integration, 
+and accessibility needs. Non-functional requirements (NFR1-NFR7) ensure the system 
+meets quality attributes for performance, availability, usability, accessibility, 
+security, and reliability. Priority levels (Critical/High/Medium/Low) guide 
+implementation sequencing.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ВАЖНЫЕ ЗАМЕЧАНИЯ
+═══════════════════════════════════════════════════════════════════════════════
+
+✅ В Word таблицы можно сделать красивее:
+   - Стиль: используй "Table Grid" или "Table Professional"
+   - Заливка заголовков: светло-синий или светло-серый
+   - Шрифт: 10-11pt для содержимого, 11-12pt для заголовков
+   - Выравнивание: по левому краю, только заголовки по центру
+
+✅ Таблицы должны помещаться на страницах:
+   - Stakeholder table: уместится на 1 странице
+   - Requirements table: займет 2-3 страницы (это нормально)
+
+✅ НЕ используй ASCII таблицы из текстовых файлов!
+   Они "палятся как AI" (слова твоего учителя)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+СООТВЕТСТВИЕ ТРЕБОВАНИЯМ ПРОЕКТА
+═══════════════════════════════════════════════════════════════════════════════
+
+STAKEHOLDER TABLE:
+✓ 4 стейкхолдера (требование: 2-4) ✓
+✓ Роли указаны ✓
+✓ Цели указаны ✓
+✓ Ожидания указаны ✓
+✓ Формат: таблица ✓
+
+REQUIREMENTS TABLE:
+✓ 13 функциональных требований (требование: ≥10) ✓
+✓ 7 нефункциональных требований (требование: 5-7) ✓
+✓ Каждое в формате "system shall" ✓
+✓ Priority levels указаны ✓
+✓ Traceability к Problems ✓
+✓ Формат: таблица для читабельности ✓
+
+
+Теперь все таблицы соответствуют требованиям! ✅
+
+
+
+
+

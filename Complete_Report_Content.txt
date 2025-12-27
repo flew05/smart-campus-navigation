@@ -1,0 +1,1048 @@
+SMART CAMPUS NAVIGATION SYSTEM
+Course Project Report
+Systems Analysis
+
+===============================================================================
+TABLE OF CONTENTS
+===============================================================================
+
+1. System Context and Stakeholder Problems
+   1.1 System Description
+   1.2 Stakeholder Analysis
+   1.3 Problem Definition
+
+2. System Requirements
+   2.1 Functional Requirements
+   2.2 Non-Functional Requirements
+   2.3 Explanatory Note
+
+3. Functional Flow Block Diagram (FFBD)
+   3.1 FFBD Diagram
+   3.2 Explanatory Note
+
+4. Use Case Diagram
+   4.1 Use Case Diagram
+   4.2 Detailed Use Case Descriptions
+
+5. UML Class Diagram
+   5.1 Class Diagram
+   5.2 Class Definitions
+
+6. Sequence Diagrams
+   6.1 Navigate to Location - Sequence Diagram
+   6.2 Check Room Availability - Sequence Diagram
+   6.3 Receive Notifications - Sequence Diagram
+
+===============================================================================
+1. SYSTEM CONTEXT AND STAKEHOLDER PROBLEMS
+===============================================================================
+
+1.1 SYSTEM DESCRIPTION
+----------------------
+
+System Name: Smart Campus Navigation System (SCNS)
+
+Purpose:
+The Smart Campus Navigation System is designed to eliminate navigation challenges faced by students, visitors, and staff on an expanding university campus. The system provides real-time indoor and outdoor navigation, integrates with academic schedules, displays facility availability, and ensures accessibility for users with disabilities.
+
+Target Users:
+- Primary: Students (new and continuing)
+- Secondary: Campus visitors (prospective students, parents, guests)
+- Tertiary: Faculty and staff members
+- Accessibility users: Students with mobility, visual, or hearing impairments
+
+Main Functionalities:
+1. Real-time Navigation: Indoor and outdoor routing with multi-floor support
+2. Schedule Integration: Automatic route generation based on class schedules
+3. Room Availability: Display of classroom, study space, and office availability
+4. Notifications: Event announcements, schedule changes, room reassignments
+5. Accessibility Features: Voice navigation, screen reader support, step-free routes
+6. Search & Discovery: Location search for buildings, rooms, facilities, and amenities
+7. Map Visualization: Interactive campus map with real-time user location
+
+Context of Use:
+The system operates as a mobile application (iOS/Android) used primarily on-campus but accessible from anywhere. Users interact with it while walking between classes, searching for meeting locations, finding study spaces, or navigating to campus events. The system requires GPS for outdoor navigation, indoor positioning technology (Wi-Fi/Bluetooth beacons) for indoor navigation, and integration with university information systems (schedule database, room booking system, event management).
+
+
+1.2 STAKEHOLDER ANALYSIS
+-------------------------
+
++------------------+---------------------------+--------------------------------+------------------------------------+
+| Stakeholder      | Role                      | Goals                          | Expectations                       |
++------------------+---------------------------+--------------------------------+------------------------------------+
+| Students         | Primary end-users who     | • Find classrooms quickly      | • Accurate navigation within       |
+|                  | navigate campus daily     | • Arrive on time to classes    |   2 minutes                        |
+|                  |                           | • Discover available study     | • Integration with personal        |
+|                  |                           |   spaces                       |   schedule                         |
+|                  |                           | • Receive timely schedule      | • Real-time room availability      |
+|                  |                           |   updates                      | • Minimal battery consumption      |
+|                  |                           |                                | • Intuitive interface              |
++------------------+---------------------------+--------------------------------+------------------------------------+
+| Visitors         | Prospective students,     | • Navigate unfamiliar campus   | • No login required (guest mode)   |
+|                  | parents, guests attending | • Find specific buildings/     | • Simple, clear directions         |
+|                  | campus events             |   offices                      | • Landmark-based navigation        |
+|                  |                           | • Locate parking and amenities | • Accessible from entry points     |
++------------------+---------------------------+--------------------------------+------------------------------------+
+| Faculty/Staff    | Instructors and           | • Update room assignments      | • Easy content management          |
+|                  | administrative staff      | • Notify students of location  |   interface                        |
+|                  |                           |   changes                      | • Real-time notification           |
+|                  |                           | • Find colleagues' offices     |   capability                       |
+|                  |                           | • Manage accessibility needs   | • Reliable schedule data sync      |
+|                  |                           |                                | • Office hour visibility control   |
++------------------+---------------------------+--------------------------------+------------------------------------+
+| Campus           | IT department and         | • Reduce navigation-related    | • Robust system uptime (99.5%+)    |
+| Administration   | facilities management     |   complaints                   | • Analytics on space usage         |
+|                  |                           | • Optimize space utilization   | • Easy map updates for new         |
+|                  |                           | • Monitor system performance   |   buildings                        |
+|                  |                           | • Ensure accessibility         | • ADA/WCAG compliance              |
+|                  |                           |   compliance                   |                                    |
++------------------+---------------------------+--------------------------------+------------------------------------+
+| Students with    | Users requiring           | • Navigate campus              | • WCAG 2.1 AA compliance           |
+| Disabilities     | accessibility features    |   independently                | • Voice-guided navigation          |
+|                  |                           | • Access step-free routes      | • High-contrast mode               |
+|                  |                           | • Use assistive technologies   | • Elevator/ramp route options      |
++------------------+---------------------------+--------------------------------+------------------------------------+
+
+
+1.3 PROBLEM DEFINITION
+----------------------
+
+Problem 1: Navigation Confusion and Tardiness
+
+Description: 
+Students and visitors frequently get lost on campus, especially during the first weeks of the semester or when room assignments change. The expanding campus with new buildings exacerbates this issue. Current solutions (static maps, signage) are insufficient for a dynamic campus environment.
+
+Impact: 
+Students arrive late to classes, miss important meetings, and experience stress and frustration. Faculty report delays at the start of classes. Prospective students may form negative impressions during campus visits.
+
+Stakeholders Affected: Students, Visitors, Faculty
+
+
+Problem 2: Lack of Real-Time Facility Information
+
+Description: 
+Students waste significant time searching for available study spaces, computer labs, or open classrooms. There is no centralized system showing real-time room availability or last-minute room changes. Email notifications about changes are often missed or seen too late.
+
+Impact: 
+Inefficient use of campus facilities, student frustration, missed classes due to unnoticed room changes, reduced productivity.
+
+Stakeholders Affected: Students, Faculty, Campus Administration
+
+
+Problem 3: Accessibility Barriers
+
+Description: 
+Students with disabilities face significant challenges navigating campus independently. Current maps don't indicate accessible routes, elevator locations, or step-free paths. Navigation tools are not compatible with screen readers and assistive technologies.
+
+Impact: 
+Limited independence for students with disabilities, potential ADA compliance issues, inequitable campus experience.
+
+Stakeholders Affected: Students with Disabilities, Campus Administration
+
+
+Problem 4: Information Fragmentation
+
+Description: 
+Campus information is scattered across multiple platforms—class schedules in one system, building maps on the website, event notifications via email, room availability through separate booking systems. Users must navigate multiple interfaces to plan their campus activities.
+
+Impact: 
+Cognitive overload, missed events, inefficient time management, reduced engagement with campus activities.
+
+Stakeholders Affected: Students, Visitors, Faculty
+
+
+===============================================================================
+2. SYSTEM REQUIREMENTS
+===============================================================================
+
+2.1 FUNCTIONAL REQUIREMENTS
+----------------------------
+
+FR1: The system shall allow users to search for any campus location by name, building code, or room number.
+
+Justification: Essential for users to find their destination before navigation can begin. Supports all primary use cases.
+
+
+FR2: The system shall calculate optimal routes between two campus locations, including both outdoor paths and indoor corridors.
+
+Justification: Core navigation functionality addressing Problem 1 (navigation confusion).
+
+
+FR3: The system shall integrate with the university's schedule management system to automatically retrieve and display users' class schedules.
+
+Justification: Enables schedule-based routing and proactive notifications. Addresses Problem 4 (information fragmentation).
+
+
+FR4: The system shall provide turn-by-turn navigation instructions with visual, text, and optional audio guidance.
+
+Justification: Supports diverse user preferences and accessibility needs (Problem 3).
+
+
+FR5: The system shall display real-time room availability status for classrooms, study spaces, and computer labs.
+
+Justification: Directly addresses Problem 2 (lack of real-time facility information). Improves space utilization.
+
+
+FR6: The system shall send push notifications to users about schedule changes, room reassignments, and campus events relevant to their location or schedule.
+
+Justification: Prevents students from missing classes due to last-minute changes. Addresses Problem 2.
+
+
+FR7: The system shall calculate and display accessible routes that avoid stairs and include elevator locations for users with mobility impairments.
+
+Justification: Required for ADA compliance and addresses Problem 3 (accessibility barriers).
+
+
+FR8: The system shall support voice-based navigation commands and provide compatibility with screen reader software.
+
+Justification: Enables independent navigation for visually impaired users. Addresses Problem 3.
+
+
+FR9: The system shall allow faculty and staff to update room information, office hours, and send location-specific announcements.
+
+Justification: Ensures data accuracy and enables timely communication with students.
+
+
+FR10: The system shall provide a guest mode that allows navigation without user authentication for campus visitors.
+
+Justification: Serves secondary stakeholder needs (visitors) without creating barriers to entry.
+
+
+FR11: The system shall display the user's current location on an interactive campus map with zoom and pan capabilities.
+
+Justification: Provides spatial context necessary for effective navigation. Fundamental mapping feature.
+
+
+FR12: The system shall save frequently visited locations and recent searches for quick access.
+
+Justification: Improves user efficiency and reduces repetitive data entry.
+
+
+2.2 NON-FUNCTIONAL REQUIREMENTS
+--------------------------------
+
+NFR1: Performance - Route Calculation Speed
+
+The system shall calculate routes within 3 seconds for 95% of requests under normal network conditions.
+
+Justification: Users need quick responses when navigating between classes with limited time. Delays cause frustration and defeat the purpose of reducing tardiness.
+
+
+NFR2: Availability
+
+The system shall maintain 99.5% uptime during academic hours (7 AM - 10 PM, Monday-Friday).
+
+Justification: System unavailability during class transitions would severely impact users who depend on it for navigation. Critical for trust and adoption.
+
+
+NFR3: Usability - Learnability
+
+New users shall be able to successfully navigate to a destination within 2 minutes of first using the application, without training.
+
+Justification: Student population includes new users each semester. Complex interfaces would create barriers and reduce adoption.
+
+
+NFR4: Accessibility - WCAG Compliance
+
+The system shall comply with WCAG 2.1 Level AA standards for web and mobile accessibility.
+
+Justification: Legal requirement (ADA) and ethical obligation. Ensures equitable access for students with disabilities.
+
+
+NFR5: Security - Data Privacy
+
+The system shall encrypt all user location data and schedule information using TLS 1.3 during transmission and AES-256 at rest.
+
+Justification: Location data is sensitive personal information. University must comply with FERPA and protect student privacy.
+
+
+NFR6: Reliability - Positioning Accuracy
+
+The system shall maintain positioning accuracy within 5 meters outdoors (GPS) and 3 meters indoors (beacon-based).
+
+Justification: Insufficient accuracy would result in incorrect directions, particularly problematic in large buildings with similar corridors.
+
+
+NFR7: Performance - Battery Efficiency
+
+The application shall consume no more than 5% of device battery per hour of active navigation.
+
+Justification: Excessive battery drain would discourage users from keeping the app active, reducing its utility for continuous navigation throughout the day.
+
+
+2.3 EXPLANATORY NOTE
+---------------------
+
+The requirements were derived through systematic analysis of the four core problems identified in Task 1 and aligned with stakeholder expectations.
+
+Functional requirements prioritize three key capabilities:
+
+1. Navigation precision (FR1-FR4) - Directly addresses Problem 1 by providing accurate, multi-modal routing
+
+2. Information integration (FR3, FR5, FR6) - Solves Problem 2 and Problem 4 by centralizing fragmented campus data
+
+3. Accessibility (FR7, FR8) - Tackles Problem 3 by embedding inclusive design from the start
+
+The guest mode (FR10) recognizes that visitors represent a significant but often overlooked user group whose positive experience impacts university reputation and recruitment.
+
+Non-functional requirements balance performance with resource constraints. The 3-second route calculation target (NFR1) is based on UX research showing users tolerate 2-4 seconds for navigation queries. The 99.5% uptime (NFR2) allows for approximately 30 minutes of downtime per week, suitable for maintenance windows outside peak hours.
+
+Accessibility compliance (NFR4) goes beyond legal minimums because navigation is a domain where accessibility directly impacts independence and safety. Location accuracy (NFR6) thresholds are based on typical campus architecture—5 meters outdoors distinguishes between building entrances, while 3 meters indoors differentiates adjacent rooms.
+
+The requirements collectively create a system that is not merely a digital map but an intelligent navigation companion integrated into the daily campus experience.
+
+
+===============================================================================
+3. FUNCTIONAL FLOW BLOCK DIAGRAM (FFBD)
+===============================================================================
+
+3.1 FFBD DIAGRAM
+----------------
+
+[INSERT YOUR FFBD DIAGRAM IMAGE HERE]
+(The diagram you already have: JP71QiCm38RlWRo3ZYbiBv0Urj32BbqexNROqRELHjIrWos7zUqdsnliPlJh__L9taLMWTFTjarvjKtRz4ULd9xXpN-HHHYMPIl58V6CZaahHlY86BQvboRe_Yda7LoIrXZZbEpB1h82tIV6JTi0z6VaGBZM0DXxn_ZDMUcEljgVuA9dDCdYHWQWZGZTwAjRJF2QCBAW6SooCpGLv0jQr.png)
+
+
+3.2 EXPLANATORY NOTE
+--------------------
+
+System-Level Functional Decomposition
+
+The FFBD represents the complete functional flow of the Smart Campus Navigation System, decomposing high-level operations into executable sub-functions while showing their logical sequence, decision points, and parallel execution opportunities.
+
+Function Hierarchy and Rationale:
+
+LEVEL 0: PRIMARY FUNCTIONS (1.0 - 9.0)
+
+Function 1.0 - Launch Mobile App: 
+The entry point that initializes the application environment, loads cached data, and prepares the user interface. This function is critical for performance (NFR1) as it impacts perceived responsiveness.
+
+Function 2.0 - Authenticate User: 
+Implements user verification with decision logic. The system supports both authenticated (students/faculty) and guest modes, addressing FR10. Authentication success determines access to personalized features (schedule integration, saved locations).
+
+Function 2.1 - Use Guest Mode: 
+Parallel path for unauthenticated users (visitors). This ensures the system remains accessible without creating barriers to entry, supporting the visitor stakeholder group.
+
+Function 3.0 - Retrieve User Context: 
+Aggregates personalized data (current location, class schedule, preferences) from multiple sources. This function integrates with university systems (FR3) and is foundational for intelligent routing.
+
+Function 4.0 - Select Destination: 
+Captures user intent through search (FR1), schedule selection, or map interaction. This is the primary user input point that drives subsequent navigation functions.
+
+PARALLEL EXECUTION BLOCK (5.0 & 6.0):
+
+The FFBD shows parallelism between route calculation and room availability checking. These functions can execute concurrently because they query different data sources and have no sequential dependency. This design decision improves performance by reducing total processing time.
+
+Function 5.0 - Calculate Route: 
+Core navigation logic implementing FR2. Decomposes into:
+- 5.1 Apply Accessibility Preferences: Conditionally modifies route constraints (FR7) based on user profile
+- 5.2 Generate Turn-by-Turn Instructions: Produces human-readable guidance (FR4)
+
+Function 6.0 - Check Room Availability: 
+Implements FR5, decomposed into:
+- 6.1 Query Room Database: Retrieves current booking status
+- 6.2 Update Availability Status: Refreshes display with real-time data
+
+Function 7.0 - Display Navigation: 
+Renders route on interactive map (FR11) with multimodal output (visual, text, audio per FR4, FR8).
+
+Function 8.0 - Provide Real-Time Updates: 
+Continuous monitoring function that detects route deviations, schedule changes, or room reassignments, triggering FR6 notifications.
+
+Decision Point - User Reached Destination?: 
+Creates feedback loop. If user has not reached destination, system continues real-time updates (Function 7.0-8.0 loop). This iterative structure supports dynamic navigation adjustments.
+
+Function 9.0 - Send Notifications if Needed: 
+Final opportunistic function that delivers any pending announcements or follow-up information before session termination.
+
+CONTROL LOGIC RATIONALE:
+
+1. Sequence: The primary flow is sequential where data dependencies exist (must authenticate before retrieving user context)
+
+2. Parallelism: Functions 5.0 and 6.0 execute concurrently to optimize performance (NFR1)
+
+3. Iteration: The loop from decision point back to 7.0 represents continuous navigation tracking
+
+4. Conditional Branching: Authentication decision enables two valid paths (authenticated vs. guest), making the system flexible
+
+This decomposition ensures all functional requirements (FR1-FR12) are addressed through specific functions while maintaining logical coherence and supporting non-functional requirements for performance and usability.
+
+
+===============================================================================
+4. USE CASE DIAGRAM
+===============================================================================
+
+4.1 USE CASE DIAGRAM
+--------------------
+
+[INSERT YOUR USE CASE DIAGRAM IMAGE HERE]
+(The diagram you already have: XP91Qm8n48Nl2_iV1a_s8BqN4Qb548eKGxqFoQmEP3UIpDfAwNzl4dUjhRQUic6_z_Bc9TCWwAMjRLbOgWJ4WUVDLi2m9otich8e2zJYF2Xf3JNIRzSSEAxzTZ17tLevt2l1gXe01iXVf_yph7TjW4LJELzZiWPr249rPcSBbKvAXsApiGG3LSTaqAcMkEVDJz57MK2V2KOZ67OCfI6UdSx.png)
+
+
+4.2 DETAILED USE CASE DESCRIPTIONS
+-----------------------------------
+
+USE CASE 1: NAVIGATE TO LOCATION
+
+Title: Navigate to Location
+
+Primary Actor: Student
+
+Stakeholders and Interests:
+- Student: Wants quick, accurate route to classroom/facility
+- Campus Administration: Wants to reduce navigation-related complaints
+
+Preconditions:
+- User has installed and launched the mobile application
+- User location services are enabled
+- Campus map data is available (cached or online)
+
+Postconditions:
+- User receives turn-by-turn navigation to destination
+- Route is displayed on interactive map
+- Navigation session is logged for analytics
+
+Main Success Scenario (Basic Flow):
+1. Student opens the Smart Campus Navigation System app
+2. System retrieves student's current GPS location
+3. Student enters destination (e.g., "Engineering Building Room 305") in search bar
+4. System validates destination and confirms selection with student
+5. System calculates optimal route considering current location, walkways, building entrances
+6. System includes "Calculate Route" use case to determine path
+7. System displays route on map with estimated walking time
+8. System provides turn-by-turn navigation instructions (visual and optional audio)
+9. Student follows instructions and walks toward destination
+10. System updates route in real-time based on student movement
+11. Student arrives at destination
+12. System confirms arrival and ends navigation session
+
+Extensions (Alternative Flows):
+
+3a. Student selects destination from class schedule instead of searching
+   3a1. System displays upcoming classes
+   3a2. Student selects next class
+   3a3. System auto-fills destination from schedule database
+   3a4. Continue with step 5
+
+5a. Student has accessibility preferences enabled
+   5a1. System applies accessibility constraints (step-free route)
+   5a2. System prioritizes elevators and ramps
+   5a3. Continue with step 6
+
+9a. Student deviates significantly from route
+   9a1. System detects location divergence (>20 meters)
+   9a2. System recalculates route from new position
+   9a3. System displays updated instructions
+   9a4. Continue with step 9
+
+Special Requirements:
+- Route calculation must complete within 3 seconds (NFR1)
+- Indoor positioning accuracy within 3 meters (NFR6)
+- Navigation instructions must be screen-reader compatible (NFR4)
+
+Frequency of Occurrence: 
+5-10 times per student per day during academic semester
+
+
+---
+
+USE CASE 2: RECEIVE NOTIFICATIONS
+
+Title: Receive Notifications
+
+Primary Actor: Student
+
+Stakeholders and Interests:
+- Student: Wants timely alerts about schedule/room changes
+- Faculty: Wants to communicate last-minute changes effectively
+
+Preconditions:
+- Student is authenticated in the application
+- Student has granted notification permissions
+- Student's schedule is integrated with university system
+- Campus Information System has triggered an event
+
+Postconditions:
+- Student receives and acknowledges notification
+- Notification is logged in message history
+- If room change occurred, student's next navigation automatically updates
+
+Main Success Scenario (Basic Flow):
+1. Campus Information System detects a room change event for student's upcoming class
+2. System triggers notification to all affected students
+3. Notification Service receives event data and formats message
+4. Notification Service pushes message to student's mobile device
+5. Student's phone displays notification with room change details
+6. Student taps notification to open app
+7. App displays detailed information: old room, new room, reason, time
+8. Student acknowledges notification
+9. App updates student's schedule with new room location
+10. App offers to start navigation to new room
+11. Student accepts navigation offer
+12. System extends to "Navigate to Location" use case
+
+Extensions (Alternative Flows):
+
+5a. Student is currently navigating to old room
+   5a1. System displays high-priority alert overlay
+   5a2. System pauses current navigation
+   5a3. Student acknowledges alert
+   5a4. System automatically recalculates route to new room
+   5a5. Continue with step 9
+
+5b. Student does not respond to notification within 5 minutes
+   5b1. System sends follow-up notification with increased urgency
+   5b2. System displays banner when app is next opened
+   5b3. Continue with step 6 when student interacts
+
+11a. Student declines navigation offer
+    11a1. System saves updated schedule
+    11a2. Navigation not started
+    11a3. Use case ends
+
+Special Requirements:
+- Notifications must be delivered within 30 seconds of event trigger
+- Must support multiple notification types: room changes, events, emergencies
+- Must be compatible with OS-level notification accessibility features
+
+Frequency of Occurrence: 
+2-3 times per student per week
+
+
+---
+
+USE CASE 3: SEARCH CAMPUS FACILITIES
+
+Title: Search Campus Facilities
+
+Primary Actor: Visitor
+
+Stakeholders and Interests:
+- Visitor: Wants to quickly find specific buildings or services without prior campus knowledge
+- Campus Administration: Wants to provide positive visitor experience to support recruitment
+
+Preconditions:
+- Visitor has launched app (guest mode, no authentication required)
+- Campus map database is accessible
+
+Postconditions:
+- Visitor receives search results with relevant locations
+- Selected location details are displayed
+- Option to navigate to location is available
+
+Main Success Scenario (Basic Flow):
+1. Visitor opens Smart Campus Navigation System app
+2. System loads in guest mode (no login required)
+3. System displays campus overview map with search bar
+4. Visitor enters search query (e.g., "library", "parking", "admissions office")
+5. System searches location database by name, keywords, tags, and aliases
+6. System returns ranked search results (5-10 locations)
+7. System displays results as list with thumbnail images and brief descriptions
+8. Visitor taps on "Main Library" search result
+9. System displays detailed information: full name, hours, photo, amenities
+10. System shows location marker on map
+11. Visitor taps "Navigate Here" button
+12. System includes "Navigate to Location" use case
+13. Visitor receives turn-by-turn directions to library
+
+Extensions (Alternative Flows):
+
+6a. Search returns no results
+   6a1. System displays "No results found" message
+   6a2. System suggests similar search terms or popular destinations
+   6a3. Visitor modifies search query
+   6a4. Return to step 5
+
+6b. Search is ambiguous (multiple similar results)
+   6b1. System displays all matching locations with disambiguating information
+   6b2. System shows all results on map with numbered markers
+   6b3. Visitor selects specific result
+   6b4. Continue with step 9
+
+11a. Visitor wants more information before navigating
+    11a1. Visitor explores additional tabs: hours, contact, photos
+    11a2. Visitor reviews location details
+    11a3. Visitor returns to map view
+    11a4. Continue with step 11 or close details
+
+Special Requirements:
+- Search must return results within 2 seconds
+- Must support fuzzy matching and common misspellings
+- Must include category filters (buildings, parking, dining, recreation)
+- Guest mode must not require authentication (FR10)
+
+Frequency of Occurrence: 
+Peak during campus tours and orientation events; 50-100 searches per day per tour group
+
+
+===============================================================================
+5. UML CLASS DIAGRAM
+===============================================================================
+
+5.1 CLASS DIAGRAM
+-----------------
+
+[INSERT YOUR CLASS DIAGRAM IMAGE HERE]
+(The diagram you already have: XPD1IyGm48NlWVo7q9EwRD6h1n6w5q4NSTLxIAVTG9gKJB8eudztcgsrpGfxQlAQlczcNdgFGVeGEyCPPyf8HF66uCKNPqAi8oqVDk9Mx8BNjasQbHqi5U_CKbaPrsfxSPdM2E7PGmCUh08SnEy_raxjeOxq-P67upPdAXSzmlQ477HIDZB0AoqJhuMmXOzG3VuPxT4f6RIp8ysCs_CTDiO.png)
+
+
+5.2 CLASS DEFINITIONS
+---------------------
+
+1. USER
+
+Purpose: Represents any user of the system (Student, Visitor, Faculty/Staff)
+
+Attributes:
+- userID: String - Unique identifier for user
+- name: String - User's full name
+- email: String - Contact email address
+- role: UserRole - Enumeration (Student, Visitor, Faculty, Staff)
+- isAuthenticated: boolean - Current authentication status
+
+Operations:
+- login(): Authenticate user credentials
+- logout(): End user session
+- updateProfile(): Modify user information
+- setPreferences(): Configure user preferences
+
+Relationships: 
+- Has-a Schedule (1:*)
+- Has-a AccessibilityPreference (1:0..1)
+- Receives Notification (1:*)
+
+Key Responsibilities: Authentication, profile management, preference configuration
+
+
+---
+
+2. SCHEDULE
+
+Purpose: Contains user's academic schedule with class sessions
+
+Attributes:
+- scheduleID: String - Unique schedule identifier
+- semester: String - Academic term (e.g., "Fall 2024")
+- lastUpdated: DateTime - Timestamp of last synchronization
+
+Operations:
+- getNextClass(): Returns upcoming class session
+- getClassByTime(DateTime): Retrieves class at specific time
+- updateSchedule(): Synchronizes with university system
+
+Relationships: 
+- Belongs-to User (1:1)
+- Contains ClassSession (1:*)
+
+Key Responsibilities: Retrieve upcoming classes, integrate with university schedule system
+
+
+---
+
+3. CLASSSESSION
+
+Purpose: Represents individual class meeting
+
+Attributes:
+- sessionID: String - Unique session identifier
+- courseName: String - Course title
+- instructorName: String - Faculty member name
+- startTime: DateTime - Class start time
+- endTime: DateTime - Class end time
+- dayOfWeek: String - Day class occurs
+
+Operations:
+- getLocation(): Returns classroom location
+- isUpcoming(): Checks if class is in near future
+- getDuration(): Calculates class length
+
+Relationships: 
+- Part-of Schedule (*:1)
+- Held-in Location (*:1)
+
+Key Responsibilities: Provide class details, determine if upcoming, return location
+
+
+---
+
+4. LOCATION
+
+Purpose: Represents any physical place on campus (room, building entrance, landmark)
+
+Attributes:
+- locationID: String - Unique location identifier
+- name: String - Human-readable location name
+- latitude: double - Geographic coordinate
+- longitude: double - Geographic coordinate
+- floor: int - Floor level (-1 for basement, 0 for ground)
+- buildingID: String - Reference to parent building
+- type: LocationType - Enumeration (Classroom, Office, Lab, etc.)
+
+Operations:
+- getCoordinates(): Returns lat/long pair
+- getBuilding(): Returns parent building object
+- calculateDistance(Location): Computes distance to another location
+- isAccessible(): Checks accessibility features
+
+Relationships: 
+- Belongs-to Building (*:1)
+- Used-by Route (*:*)
+- Has RoomAvailability (1:0..1)
+
+Key Responsibilities: Store coordinates, support distance calculations, indicate accessibility
+
+
+---
+
+5. BUILDING
+
+Purpose: Represents campus building structure
+
+Attributes:
+- buildingID: String - Unique building identifier
+- name: String - Building name
+- abbreviation: String - Short code (e.g., "ENG" for Engineering)
+- address: String - Physical address
+- numberOfFloors: int - Total floors including basement
+- hasElevator: boolean - Elevator availability
+
+Operations:
+- getFloorPlan(floor: int): Returns map for specific floor
+- getEntrances(): Returns list of building entry points
+- isAccessible(): Checks ADA compliance
+
+Relationships: 
+- Contains Location (1:*)
+
+Key Responsibilities: Provide floor plans, entrance information, accessibility features
+
+
+---
+
+6. ROUTE
+
+Purpose: Represents calculated path from origin to destination
+
+Attributes:
+- routeID: String - Unique route identifier
+- startLocation: Location - Origin point
+- endLocation: Location - Destination point
+- waypoints: List<Location> - Intermediate points
+- distance: double - Total route distance in meters
+- estimatedTime: int - Expected travel time in seconds
+- isAccessible: boolean - Whether route is step-free
+
+Operations:
+- getNextWaypoint(): Returns next location in path
+- getTotalDistance(): Returns distance in meters
+- getInstructions(): Returns turn-by-turn guidance
+
+Relationships: 
+- Created-by NavigationService
+- Consists-of RouteSegment (1:2..*)
+
+Key Responsibilities: Store waypoints, provide turn-by-turn instructions, calculate total distance/time
+
+
+---
+
+7. ROUTESEGMENT
+
+Purpose: Individual section of a route with specific instruction
+
+Attributes:
+- segmentID: String - Unique segment identifier
+- startPoint: Location - Segment origin
+- endPoint: Location - Segment destination
+- instruction: String - Human-readable direction (e.g., "Turn left at fountain")
+- segmentType: SegmentType - Enumeration (Walk, Stairs, Elevator, etc.)
+
+Operations:
+- getDirection(): Returns compass direction
+- getLength(): Returns segment distance
+
+Relationships: 
+- Part-of Route (*:1)
+- Connects Locations
+
+Key Responsibilities: Provide directional guidance for one segment of journey
+
+
+---
+
+8. NAVIGATIONSERVICE
+
+Purpose: Core service that calculates routes and provides real-time navigation
+
+Attributes:
+- currentRoute: Route - Active navigation route
+- isNavigating: boolean - Navigation status
+
+Operations:
+- calculateRoute(start: Location, end: Location): Computes optimal path
+- updateRoute(): Recalculates based on current position
+- getCurrentPosition(): Returns user's real-time location
+- provideGuidance(): Generates turn-by-turn instructions
+
+Relationships: 
+- Uses CampusMap
+- Creates Route
+- Interacts with User
+
+Key Responsibilities: Pathfinding algorithm, real-time position tracking, guidance generation
+
+
+---
+
+9. CAMPUSMAP
+
+Purpose: Geographic data representation of campus
+
+Attributes:
+- mapVersion: String - Version identifier for map data
+- lastUpdate: DateTime - Timestamp of last map update
+- zoomLevel: int - Current zoom level
+
+Operations:
+- getMapData(): Returns geographic data
+- updateMap(): Synchronizes with latest campus changes
+- findLocation(name: String): Searches for location by name
+- showRoute(route: Route): Displays route on map
+
+Relationships: 
+- Contains MapLayer (1:*)
+- Used-by NavigationService
+
+Key Responsibilities: Store map data, display routes, enable location search
+
+
+---
+
+10. MAPLAYER
+
+Purpose: Separate visual layer (buildings, pathways, points of interest)
+
+Attributes:
+- layerID: String - Layer identifier
+- name: String - Layer name (e.g., "Buildings", "Parking")
+- isVisible: boolean - Display status
+- layerType: LayerType - Enumeration of layer categories
+
+Operations:
+- show(): Make layer visible
+- hide(): Make layer invisible
+- refresh(): Reload layer data
+
+Relationships: 
+- Part-of CampusMap (*:1)
+
+Key Responsibilities: Layer visibility control, data refresh
+
+
+---
+
+11. NOTIFICATION
+
+Purpose: System messages sent to users (alerts, reminders, announcements)
+
+Attributes:
+- notificationID: String - Unique notification identifier
+- title: String - Notification headline
+- message: String - Notification body text
+- timestamp: DateTime - Time notification was created
+- priority: Priority - Enumeration (Low, Medium, High, Urgent)
+- type: NotificationType - Enumeration (RoomChange, Event, Emergency)
+- isRead: boolean - Read status
+
+Operations:
+- send(): Deliver notification to user
+- markAsRead(): Update read status
+- dismiss(): Remove notification
+
+Relationships: 
+- Received-by User (*:*)
+
+Key Responsibilities: Message delivery, read status tracking, priority management
+
+
+---
+
+12. ACCESSIBILITYPREFERENCE
+
+Purpose: User's accessibility requirements and interface preferences
+
+Attributes:
+- preferenceID: String - Unique preference identifier
+- userID: String - Associated user
+- requireStepFreeRoute: boolean - Avoid stairs
+- useVoiceGuidance: boolean - Audio instructions enabled
+- useScreenReader: boolean - Screen reader compatibility
+- preferredFontSize: int - Text size preference
+- highContrastMode: boolean - High contrast display
+
+Operations:
+- apply(): Apply preferences to system
+- update(): Modify preference settings
+- getConstraints(): Return routing constraints
+
+Relationships: 
+- Belongs-to User (1:0..1)
+- Influences Route calculation
+
+Key Responsibilities: Store accessibility constraints, apply preferences to navigation
+
+
+---
+
+13. ROOMAVAILABILITY
+
+Purpose: Real-time status of room occupancy and booking
+
+Attributes:
+- roomID: String - Room identifier
+- locationID: String - Associated location
+- isAvailable: boolean - Current availability status
+- currentOccupancy: int - Number of people currently in room
+- capacity: int - Maximum room capacity
+- nextAvailableTime: DateTime - When room becomes available
+- availabilityStatus: Status - Enumeration (Available, Occupied, Reserved)
+
+Operations:
+- checkAvailability(): Query current status
+- updateStatus(): Refresh availability information
+- getSchedule(): Return booking schedule
+- reserve(): Book room if booking system integrated
+
+Relationships: 
+- Associated-with Location (1:1)
+
+Key Responsibilities: Track availability status, provide booking information, update in real-time
+
+
+---
+
+KEY DESIGN DECISIONS:
+
+Separation of Location and Building: Allows buildings to contain multiple locations (rooms, entrances) while maintaining hierarchy
+
+Route decomposition into segments: Enables granular turn-by-turn instructions and easier route modification
+
+AccessibilityPreference as separate class: Follows Single Responsibility Principle and allows complex accessibility logic without bloating User class
+
+NavigationService as central coordinator: Implements Facade pattern, hiding complexity of pathfinding algorithms
+
+Notification independence: Allows notifications from multiple sources (schedule changes, system events) without tight coupling
+
+
+===============================================================================
+6. SEQUENCE DIAGRAMS
+===============================================================================
+
+6.1 NAVIGATE TO LOCATION - SEQUENCE DIAGRAM
+--------------------------------------------
+
+[INSERT YOUR SEQUENCE DIAGRAM 1 IMAGE HERE]
+(The diagram you already have: NP113i8W44Nt9DnXqfKkl40NfYPkTM5FC8M98K5069fuUuTQ6-CA-F_n_y1G63FNXzSA3SSC8rTBWRLAeZlZ4WQ6xX8dvmbEANM0fQr_m1LdTqTsCS18UNQ65b3a_oHCS4R62Si74K4hhTPUE1nRElGIuyamM2himfAiLNC4a5G1CZshcBTOcNO_s5wh1WZNkdgu4ykcTUx4QjfXotZ8oOg.png)
+
+
+EXPLANATION (300 words):
+
+Scenario: A student needs to navigate to their next class location using the Smart Campus Navigation System.
+
+Participating Objects:
+- Student (Actor): Primary user initiating navigation request
+- Mobile App: Client-side application interface
+- Navigation Service: Backend service responsible for route calculation and guidance
+- Map Database: Data repository containing campus geographic information, building layouts, and pathways
+
+Interaction Flow:
+
+The sequence begins when the Student selects a destination, typically by searching for a location name or selecting from their integrated class schedule. This action triggers the Mobile App to send a "requestRoute(destination)" message to the Navigation Service.
+
+Upon receiving the request, the Navigation Service must obtain current map data to perform route calculation. It sends a "getMapData()" message to the Map Database. The Map Database retrieves the relevant campus geography, including buildings, pathways, entrances, and accessibility features, and returns this data to the Navigation Service via the "map data" response.
+
+With map data now available, the Navigation Service executes its pathfinding algorithm (likely A* or Dijkstra's algorithm adapted for pedestrian navigation). This algorithm considers factors such as current user location (GPS or indoor positioning), destination coordinates, available pathways and building entrances, elevation changes and stair locations, user's accessibility preferences if enabled, and estimated walking speed.
+
+The algorithm produces an optimal route, which is returned to the Mobile App as "calculated route". This route object contains waypoints, turn-by-turn instructions, estimated time, and total distance. Finally, the Mobile App processes the route data and presents it visually on the interactive map, simultaneously displaying turn-by-turn instructions through the message "display navigation" to the Student.
+
+Design Rationale: This sequence demonstrates separation of concerns—the Mobile App handles presentation, the Navigation Service manages business logic, and the Map Database provides data persistence. The synchronous communication pattern is appropriate here because the user expects immediate routing results (within the 3-second performance requirement from NFR1).
+
+Alignment with Requirements: This sequence directly implements FR2 (calculate optimal routes) and FR4 (turn-by-turn navigation). The Map Database query supports FR11 (interactive map display).
+
+
+---
+
+6.2 CHECK ROOM AVAILABILITY - SEQUENCE DIAGRAM
+-----------------------------------------------
+
+[INSERT YOUR SEQUENCE DIAGRAM 2 IMAGE HERE]
+(The diagram you already have: NT112i8m40NGVI1t6BhIXHVeGlG0tTWJZEcW0saRCnEXjtTIguYhmF3-vvEJA6OjO_GEWyuPUYq3JUfTiZi7JZWfDDryvKXmJga1bFh-WSiyZz3XX3SQBGxz8ahZYYzTxvrtMp4SZZKEBGXX3lTwNlg4WNOXir9ct7jNXK6B6ipqA2HwVY97j1siow-jwF1jnRUoiTac2KGMtVhCV4QqCB2.png)
+
+
+EXPLANATION (300 words):
+
+Scenario: A student wants to find an available study space or check if a classroom is currently occupied.
+
+Participating Objects:
+- Student (Actor): User seeking available space information
+- Mobile App: Interface for submitting search queries
+- Room Management System: Backend service maintaining real-time room occupancy and booking data
+
+Interaction Flow:
+
+The student initiates the interaction by entering search criteria for available spaces—this might include location preferences (specific building or floor), space type (study room, computer lab, classroom), desired capacity, or time range. The student submits this query through the Mobile App using the action "searchStudySpace(criteria)".
+
+The Mobile App forwards this request to the Room Management System by sending the message "requestAvailability(criteria)". The Room Management System processes the criteria by: querying the room database for spaces matching the criteria, filtering out currently occupied or reserved rooms, checking real-time sensor data if available (occupancy sensors, booking system integration), and ranking results by relevance (proximity to user, amenities available).
+
+The Room Management System compiles a list of available rooms with details such as room name, building/floor location, capacity, available amenities (whiteboards, projectors, power outlets), and expected availability duration (when the next booking begins). This compiled information is returned to the Mobile App as "available rooms list". The Mobile App then formats and presents this information to the Student through "display results", typically showing visual indicators on the map (green markers for available spaces), sortable list view with room details, option to navigate to selected room, and option to reserve room if booking system is integrated.
+
+Design Rationale: This sequence exemplifies query-response architecture where the client submits queries and receives filtered, processed results. The Room Management System acts as an abstraction layer over multiple potential data sources (schedule database, booking system, IoT sensors), providing a unified interface.
+
+Alignment with Requirements: This sequence implements FR5 (display real-time room availability) and addresses Problem 2 from the stakeholder analysis (lack of real-time facility information).
+
+
+---
+
+6.3 RECEIVE NOTIFICATIONS - SEQUENCE DIAGRAM
+---------------------------------------------
+
+[INSERT YOUR SEQUENCE DIAGRAM 3 IMAGE HERE]
+(The diagram you already have: NT1D2i8m40NWVI1t6Bht0YwaKbnqePkUO4odDjZya4mhlRrZg29TJU1zl1bIPyR4ivkqYlAmnaRq35M3BiuPMZ-4v91jyD2jcSbLW1cQjjlvMs0xMBD9IeirL6W9rfs-XhkT2Cun5YDJApGS4dGyz-HPAwra2HnEMm4S8ONWcX7zWovB8LiYHWe4oC4Z-Bz3jFe4ac-jOdgRuuJhZdtpNnM.png)
+
+
+EXPLANATION (300 words):
+
+Scenario: A room change occurs for a student's upcoming class, and the system must notify the student immediately to prevent confusion and tardiness.
+
+Participating Objects:
+- Campus Information System (Actor): External university system that manages class schedules, room assignments, and events
+- Notification Service: Backend service responsible for processing events and delivering notifications to users
+- Mobile App: Client application that receives and displays notifications
+- Student (Actor): Notification recipient
+
+Interaction Flow:
+
+The sequence is triggered by an event in the Campus Information System—in this scenario, a "roomChangeEvent" occurs. This might happen because classroom equipment failure requires moving class to different room, room double-booking detected requiring reassignment, instructor requests room change, or emergency requiring building evacuation.
+
+The Campus Information System identifies all students enrolled in the affected class and sends a "roomChangeEvent" message to the Notification Service. This message contains class identifier (course code, section), old room location, new room location, reason for change (optional), time of change, and list of affected user IDs.
+
+The Notification Service receives this event and performs several operations: validation (confirms event is legitimate and complete), recipient filtering (determines which users should receive notification), prioritization (marks as high-priority if class is imminent within next 2 hours), message formatting (creates user-friendly notification text), and delivery (sends push notification via platform-specific channels).
+
+The Notification Service sends a "push notification" message to the Mobile App. Modern mobile operating systems queue these notifications and deliver them even if the app is not actively running. When delivered, the Mobile App displays the notification to the Student through system notification UI. The Student sees a banner or alert with the notification message. The Student taps the notification, which opens the Mobile App and displays detailed information through "display notification". After reviewing, the Student sends an "acknowledge" message back to the Mobile App.
+
+Design Rationale: This sequence implements the publish-subscribe pattern where the Campus Information System publishes events, and the Notification Service subscribes to relevant events for processing.
+
+Alignment with Requirements: This sequence implements FR6 (send push notifications about schedule changes) and directly addresses Problem 2 (lack of real-time facility information).
+
+
+===============================================================================
+END OF REPORT
+===============================================================================
+
+
+
+
+
+
+
+

@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  smart-campus-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: smart-campus-navigation
+    ports:
+      - "8888:8888"
+    environment:
+      - SPRING_PROFILES_ACTIVE=prod
+      - JAVA_OPTS=-Xmx512m -Xms256m
+      - SERVER_PORT=8888
+    volumes:
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8888/actuator/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    networks:
+      - smart-campus-network
+
+networks:
+  smart-campus-network:
+    driver: bridge
+

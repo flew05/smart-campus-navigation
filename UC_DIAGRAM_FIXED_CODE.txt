@@ -1,0 +1,355 @@
+═══════════════════════════════════════════════════════════════════════════════
+USE CASE DIAGRAM - ПРАВИЛЬНЫЙ КОД С ИСПРАВЛЕННЫМИ СТРЕЛКАМИ
+═══════════════════════════════════════════════════════════════════════════════
+
+PLANTUML CODE (для PlantUML генератора):
+═══════════════════════════════════════════════════════════════════════════════
+
+@startuml Smart_Campus_Navigation_System
+
+' Определяем актёров
+actor Student
+actor Visitor
+actor "Faculty/Staff" as Faculty
+actor "Campus Information\nSystem" as CampusInfo
+
+' Определяем system boundary
+rectangle "Smart Campus Navigation System" {
+  
+  ' Use Cases для Student
+  usecase "Receive Notifications" as UC1
+  usecase "View Schedule-Based\nRoute" as UC2
+  usecase "Search Campus\nFacilities" as UC3
+  usecase "Navigate to Location" as UC4
+  
+  ' Вспомогательные use cases
+  usecase "Calculate Route" as UC5
+  
+  ' Use Cases для Faculty/Staff
+  usecase "Update Room\nInformation" as UC6
+  
+  ' Use Cases для Campus Information System
+  usecase "Provide Schedule Data" as UC7
+  
+}
+
+' Связи актёров с use cases
+Student --> UC1 : uses
+Student --> UC2 : uses
+Student --> UC3 : uses
+Student --> UC4 : uses
+
+Visitor --> UC3 : uses
+Visitor --> UC4 : uses
+
+Faculty --> UC4 : uses
+Faculty --> UC6 : uses
+
+CampusInfo --> UC7 : provides
+
+' ПРАВИЛЬНЫЕ RELATIONSHIPS:
+
+' Include: Navigate to Location включает Calculate Route
+UC4 .> UC5 : <<include>>
+
+' Extend: View Schedule-Based Route расширяет Receive Notifications
+' ПРАВИЛЬНОЕ НАПРАВЛЕНИЕ: от расширяющего К базовому
+UC2 .> UC1 : <<extend>>
+
+@enduml
+
+
+═══════════════════════════════════════════════════════════════════════════════
+АЛЬТЕРНАТИВА: LUCIDCHART / DRAW.IO TEXT DESCRIPTION
+═══════════════════════════════════════════════════════════════════════════════
+
+ACTORS (размести слева от границы системы):
+────────────────────────────────────────────
+1. Student (stick figure)
+2. Visitor (stick figure)
+3. Faculty/Staff (stick figure)
+4. Campus Information System (stick figure)
+
+
+SYSTEM BOUNDARY:
+────────────────────────────────────────────
+Прямоугольник с названием: "Smart Campus Navigation System"
+
+
+USE CASES (овалы внутри boundary):
+────────────────────────────────────────────
+1. Receive Notifications
+2. View Schedule-Based Route
+3. Search Campus Facilities
+4. Navigate to Location
+5. Calculate Route
+6. Update Room Information
+7. Provide Schedule Data
+
+
+ASSOCIATIONS (сплошные линии от актёров к use cases):
+────────────────────────────────────────────
+Student → Receive Notifications
+Student → View Schedule-Based Route
+Student → Search Campus Facilities
+Student → Navigate to Location
+
+Visitor → Search Campus Facilities
+Visitor → Navigate to Location
+
+Faculty/Staff → Navigate to Location
+Faculty/Staff → Update Room Information
+
+Campus Information System → Provide Schedule Data
+
+
+RELATIONSHIPS (пунктирные стрелки):
+────────────────────────────────────────────
+
+⚠️ КРИТИЧЕСКИ ВАЖНО - ПРАВИЛЬНОЕ НАПРАВЛЕНИЕ СТРЕЛОК:
+
+1. <<include>> (Navigate to Location включает Calculate Route):
+   Стрелка ОТ "Navigate to Location" К "Calculate Route"
+   
+   Navigate to Location -----> Calculate Route
+                      <<include>>
+   
+   Пунктирная линия, стрелка направлена ВПРАВО/ВНИЗ к Calculate Route
+
+2. <<extend>> (View Schedule-Based Route расширяет Receive Notifications):
+   Стрелка ОТ "View Schedule-Based Route" К "Receive Notifications"
+   
+   View Schedule-Based Route -----> Receive Notifications
+                            <<extend>>
+   
+   Пунктирная линия, стрелка направлена ВЛЕВО/ВВЕРХ к Receive Notifications
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ПОДРОБНОЕ ОБЪЯСНЕНИЕ ПРАВИЛЬНЫХ НАПРАВЛЕНИЙ
+═══════════════════════════════════════════════════════════════════════════════
+
+📖 ПРАВИЛА UML ДЛЯ СТРЕЛОК:
+
+1. <<include>> - "базовый use case ВКЛЮЧАЕТ вспомогательный"
+   ─────────────────────────────────────────────────────────
+   Стрелка идет ОТ базового (Navigate to Location) 
+                К включаемому (Calculate Route)
+   
+   Логика: "Navigate to Location всегда требует Calculate Route"
+   Направление: [Navigate] --include--> [Calculate]
+
+
+2. <<extend>> - "расширяющий use case РАСШИРЯЕТ базовый"
+   ─────────────────────────────────────────────────────────
+   Стрелка идет ОТ расширяющего (View Schedule-Based Route)
+                К базовому (Receive Notifications)
+   
+   Логика: "View Schedule-Based Route опционально добавляет функциональность 
+            к Receive Notifications (когда уведомление связано с расписанием)"
+   Направление: [View Schedule] --extend--> [Receive Notifications]
+
+
+⚠️ ТВОЯ ОШИБКА НА ДИАГРАММЕ:
+   У тебя стрелка шла: Receive Notifications --extend--> View Schedule-Based Route
+   Это НЕПРАВИЛЬНО! Стрелка должна идти в обратную сторону.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ИНСТРУКЦИЯ ДЛЯ DRAW.IO / LUCIDCHART / VISUAL PARADIGM
+═══════════════════════════════════════════════════════════════════════════════
+
+ШАГ 1: СОЗДАЙ АКТЁРОВ (4 штуки)
+─────────────────────────────────
+- Используй фигуру "Actor" (человечек)
+- Разместить слева от системы
+- Названия: Student, Visitor, Faculty/Staff, Campus Information System
+
+
+ШАГ 2: СОЗДАЙ SYSTEM BOUNDARY
+─────────────────────────────────
+- Прямоугольник со скругленными углами
+- Заголовок внутри: "Smart Campus Navigation System"
+- Достаточно большой чтобы вместить все use cases
+
+
+ШАГ 3: СОЗДАЙ USE CASES (7 овалов)
+─────────────────────────────────
+Внутри boundary разместить овалы с текстом:
+1. Receive Notifications (верхняя часть)
+2. View Schedule-Based Route (справа от Receive Notifications)
+3. Search Campus Facilities (центр слева)
+4. Navigate to Location (центр)
+5. Calculate Route (справа от Navigate to Location)
+6. Update Room Information (нижняя часть слева)
+7. Provide Schedule Data (нижняя часть справа)
+
+Примерное расположение:
+
+    [Receive Notifications]     [View Schedule-Based Route]
+    
+    [Search Facilities]    [Navigate to Location]    [Calculate Route]
+    
+    [Update Room Info]     [Provide Schedule Data]
+
+
+ШАГ 4: ДОБАВЬ ASSOCIATIONS (сплошные линии)
+─────────────────────────────────
+От каждого актёра к use cases которые он использует:
+- Просто сплошные линии без стрелок (или со стрелками к use case)
+
+Student → Receive Notifications
+Student → View Schedule-Based Route
+Student → Search Campus Facilities
+Student → Navigate to Location
+
+Visitor → Search Campus Facilities
+Visitor → Navigate to Location
+
+Faculty/Staff → Navigate to Location
+Faculty/Staff → Update Room Information
+
+Campus Information System → Provide Schedule Data
+
+
+ШАГ 5: ДОБАВЬ <<include>> RELATIONSHIP
+─────────────────────────────────
+От "Navigate to Location" к "Calculate Route":
+1. Создай пунктирную линию (dashed line)
+2. Добавь открытую стрелку (не закрашенную) на конце
+3. Направление: Navigate to Location -----> Calculate Route
+4. Добавь label на линии: "<<include>>"
+
+В Draw.io:
+- Line type: Dashed
+- Arrow end: Open arrow
+- Label: <<include>>
+
+
+ШАГ 6: ДОБАВЬ <<extend>> RELATIONSHIP ⚠️ ВАЖНО!
+─────────────────────────────────
+От "View Schedule-Based Route" к "Receive Notifications":
+1. Создай пунктирную линию (dashed line)
+2. Добавь открытую стрелку (не закрашенную) на конце
+3. Направление: View Schedule-Based Route -----> Receive Notifications
+4. Добавь label на линии: "<<extend>>"
+
+⚠️ НАПРАВЛЕНИЕ КРИТИЧНО! Стрелка должна указывать НА "Receive Notifications"!
+
+В Draw.io:
+- Line type: Dashed
+- Arrow end: Open arrow
+- Label: <<extend>>
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ВИЗУАЛЬНАЯ СХЕМА ПРАВИЛЬНЫХ СТРЕЛОК
+═══════════════════════════════════════════════════════════════════════════════
+
+ПРАВИЛЬНО ✅:
+
+    ┌─────────────────────────┐
+    │ View Schedule-Based     │
+    │ Route                   │
+    └───────────┬─────────────┘
+                │
+                │ <<extend>>
+                │ (пунктирная стрелка)
+                ↓
+    ┌─────────────────────────┐
+    │ Receive Notifications   │
+    └─────────────────────────┘
+
+
+    ┌─────────────────────────┐
+    │ Navigate to Location    │
+    └───────────┬─────────────┘
+                │
+                │ <<include>>
+                │ (пунктирная стрелка)
+                ↓
+    ┌─────────────────────────┐
+    │ Calculate Route         │
+    └─────────────────────────┘
+
+
+НЕПРАВИЛЬНО ❌ (как у тебя сейчас):
+
+    ┌─────────────────────────┐
+    │ Receive Notifications   │
+    └───────────┬─────────────┘
+                │
+                │ <<extend>>
+                │ (пунктирная стрелка)
+                ↓
+    ┌─────────────────────────┐
+    │ View Schedule-Based     │
+    │ Route                   │
+    └─────────────────────────┘
+
+☝️ ЭТО ТВОЯ ТЕКУЩАЯ ОШИБКА - стрелка идет не в ту сторону!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ТЕКСТОВОЕ ОПИСАНИЕ ДЛЯ БЫСТРОГО ИСПРАВЛЕНИЯ
+═══════════════════════════════════════════════════════════════════════════════
+
+Если у тебя уже есть диаграмма в каком-то инструменте:
+
+1. Найди стрелку между "Receive Notifications" и "View Schedule-Based Route"
+2. Удали её
+3. Создай НОВУЮ пунктирную стрелку:
+   - Начало: "View Schedule-Based Route"
+   - Конец: "Receive Notifications"
+   - Label: <<extend>>
+   - Тип линии: Dashed (пунктирная)
+   - Стрелка: Open arrow head
+
+Готово! Остальное на диаграмме правильно.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ПРОВЕРКА ПРАВИЛЬНОСТИ
+═══════════════════════════════════════════════════════════════════════════════
+
+Задай себе вопросы:
+
+1. "Navigate to Location" всегда включает "Calculate Route"?
+   ✅ ДА → стрелка Navigate --include--> Calculate ✓
+
+2. "View Schedule-Based Route" опционально расширяет "Receive Notifications"?
+   ✅ ДА → стрелка View Schedule --extend--> Receive Notifications ✓
+
+3. Стрелка <<extend>> идет ОТ расширяющего К базовому?
+   ✅ Проверь: от "View Schedule" к "Receive" ✓
+
+
+Если все три ответа ДА - диаграмма правильная!
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ФИНАЛЬНЫЙ ЧЕКЛИСТ
+═══════════════════════════════════════════════════════════════════════════════
+
+□ 4 актёра размещены слева от boundary
+□ System boundary "Smart Campus Navigation System" нарисован
+□ 7 use cases (овалы) внутри boundary
+□ Все associations (сплошные линии) от актёров к use cases
+□ Navigate to Location --<<include>>--> Calculate Route (стрелка вправо)
+□ View Schedule-Based Route --<<extend>>--> Receive Notifications (стрелка влево к Receive)
+□ Обе пунктирные стрелки с открытыми наконечниками
+□ Labels <<include>> и <<extend>> добавлены на стрелки
+
+Если все пункты отмечены - диаграмма готова! ✅
+
+
+═══════════════════════════════════════════════════════════════════════════════
+
+ИСПОЛЬЗУЙ PLANTUML КОД В НАЧАЛЕ ФАЙЛА ИЛИ СЛЕДУЙ ИНСТРУКЦИИ ДЛЯ DRAW.IO!
+
+Удачи! 🚀
+
+
+
+
+
