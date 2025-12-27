@@ -1,11 +1,6 @@
 pipeline {
     agent any
     
-    tools {
-        maven 'Maven-3.8.1'
-        jdk 'JDK-11'
-    }
-    
     environment {
         // Nexus Configuration
         NEXUS_URL = 'http://54.237.222.37:8081'
