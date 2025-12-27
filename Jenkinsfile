@@ -50,6 +50,10 @@ pipeline {
                     sh '''
                         echo "Building Docker image with embedded HTTP server..."
                         
+                        # Remove old Docker image to avoid cache issues
+                        echo "Removing old image..."
+                        docker rmi smart-campus-app:${GIT_TAG_TO_DEPLOY} || true
+                        
                         # Create Dockerfile with simple HTTP server
                         cat > Dockerfile.deploy << 'EOF'
 FROM eclipse-temurin:17-jre-alpine
@@ -62,8 +66,8 @@ EOF
                         # Compile Java server
                         javac SimpleServer.java
                         
-                        # Build Docker image
-                        docker build -f Dockerfile.deploy -t smart-campus-app:${GIT_TAG_TO_DEPLOY} .
+                        # Build Docker image (fresh, no cache)
+                        docker build --no-cache -f Dockerfile.deploy -t smart-campus-app:${GIT_TAG_TO_DEPLOY} .
                         
                         echo "Docker image built: smart-campus-app:${GIT_TAG_TO_DEPLOY}"
                     '''
