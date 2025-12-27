@@ -58,7 +58,7 @@ pipeline {
                         cat > Dockerfile.deploy << 'EOF'
 FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
-COPY SimpleServer.class /app/
+COPY SimpleServer*.class /app/
 EXPOSE 8888
 CMD ["java", "SimpleServer"]
 EOF
