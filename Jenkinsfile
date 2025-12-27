@@ -64,21 +64,21 @@ pipeline {
                 echo 'Stage: Deploy application'
                 script {
                     sh '''
-                        # Kill any existing process on port 8888
-                        pkill -f 'python.*8888' || true
+                        # Kill any existing Java server on port 8888
+                        pkill -f 'SimpleServer' || true
+                        sleep 2
                         
-                        # Create simple HTTP server response
-                        mkdir -p /tmp/app
-                        echo "Application deployed successfully. Version: ${GIT_TAG_TO_DEPLOY}" > /tmp/app/index.html
-                        
-                        # Start simple HTTP server in background
-                        cd /tmp/app
-                        nohup python3 -m http.server 8888 > /dev/null 2>&1 &
+                        # Compile and run Java HTTP server
+                        javac SimpleServer.java
+                        nohup java SimpleServer > /tmp/server.log 2>&1 &
                         
                         # Wait for server to start
-                        sleep 3
+                        sleep 5
                         
-                        echo "Application started on port 8888"
+                        # Verify server is running
+                        curl -f http://localhost:8888 || echo "Server check failed"
+                        
+                        echo "Deployed version: ${GIT_TAG_TO_DEPLOY}"
                     '''
                 }
                 echo 'Status: SUCCESS'
