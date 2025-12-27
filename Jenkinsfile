@@ -52,7 +52,7 @@ pipeline {
                         
                         # Create Dockerfile with simple HTTP server
                         cat > Dockerfile.deploy << 'EOF'
-FROM eclipse-temurin:11-jre-alpine
+FROM eclipse-temurin:17-jre-alpine
 WORKDIR /app
 COPY SimpleServer.class /app/
 EXPOSE 8888
