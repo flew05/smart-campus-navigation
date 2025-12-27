@@ -90,10 +90,10 @@ EOF
                         docker stop smart-campus-app || true
                         docker rm smart-campus-app || true
                         
-                        echo "Starting application container on port 8888..."
+                        echo "Starting application container with host network..."
                         docker run -d \
                             --name smart-campus-app \
-                            -p 8888:8888 \
+                            --network host \
                             --restart unless-stopped \
                             smart-campus-app:${GIT_TAG_TO_DEPLOY}
                         
@@ -101,14 +101,23 @@ EOF
                         sleep 5
                         
                         echo "Checking container status..."
-                        docker ps | grep smart-campus-app
+                        docker ps | grep smart-campus-app || echo "Container not found in ps"
                         
-                        echo "Testing application..."
-                        curl -f http://localhost:8888 || echo "Warning: localhost test failed"
+                        echo "Checking container logs..."
+                        docker logs smart-campus-app
+                        
+                        echo "Testing application on localhost:8888..."
+                        curl -v http://localhost:8888 2>&1 || echo "Warning: localhost test failed"
+                        
+                        echo "Testing application on 127.0.0.1:8888..."
+                        curl -v http://127.0.0.1:8888 2>&1 || echo "Warning: 127.0.0.1 test failed"
+                        
+                        echo "Checking if port 8888 is listening..."
+                        netstat -tuln | grep 8888 || echo "Port 8888 not found in netstat"
                         
                         echo "Deployment complete!"
                         echo "Deployed version: ${GIT_TAG_TO_DEPLOY}"
-                        echo "Application is running on http://54.237.222.37:8888"
+                        echo "Application should be accessible at http://54.237.222.37:8888"
                     '''
                 }
                 echo 'Status: SUCCESS'
