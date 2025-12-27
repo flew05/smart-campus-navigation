@@ -64,21 +64,48 @@ pipeline {
                 echo 'Stage: Deploy application'
                 script {
                     sh '''
-                        # Kill any existing Java server on port 8888
+                        set -e
+                        
+                        echo "=== Killing old servers ==="
                         pkill -f 'SimpleServer' || true
-                        sleep 2
+                        pkill -f '8888' || true
+                        sleep 3
                         
-                        # Compile and run Java HTTP server
+                        echo "=== Compiling server ==="
                         javac SimpleServer.java
-                        nohup java SimpleServer > /tmp/server.log 2>&1 &
                         
-                        # Wait for server to start
+                        echo "=== Starting server on 0.0.0.0:8888 ==="
+                        nohup java SimpleServer > /tmp/server.log 2>&1 &
+                        SERVER_PID=$!
+                        echo "Server PID: $SERVER_PID"
+                        
+                        echo "=== Waiting for server to start ==="
                         sleep 5
                         
-                        # Verify server is running
-                        curl -f http://localhost:8888 || echo "Server check failed"
+                        echo "=== Checking if server is running ==="
+                        if ps -p $SERVER_PID > /dev/null; then
+                            echo "✓ Server process is running (PID: $SERVER_PID)"
+                        else
+                            echo "✗ Server process died"
+                            cat /tmp/server.log
+                            exit 1
+                        fi
                         
+                        echo "=== Checking port 8888 ==="
+                        netstat -tuln | grep 8888 || echo "Port not visible in netstat"
+                        
+                        echo "=== Testing localhost connection ==="
+                        curl -v http://localhost:8888 2>&1 || echo "Localhost connection failed"
+                        
+                        echo "=== Testing 127.0.0.1 connection ==="
+                        curl -v http://127.0.0.1:8888 2>&1 || echo "127.0.0.1 connection failed"
+                        
+                        echo "=== Server logs ==="
+                        cat /tmp/server.log
+                        
+                        echo "=== Deployment complete ==="
                         echo "Deployed version: ${GIT_TAG_TO_DEPLOY}"
+                        echo "Application should be accessible at: http://54.237.222.37:8888"
                     '''
                 }
                 echo 'Status: SUCCESS'
